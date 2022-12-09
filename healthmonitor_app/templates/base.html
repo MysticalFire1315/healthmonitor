@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport"
+              content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        {% block styles %}
+            <!-- Bootstrap CSS -->
+            {{ bootstrap.load_css() }}
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+            <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap5.css">
+        {% endblock %}
+
+
+        {% block title %}
+            <!-- Default page title -->
+            <title>HealthMonitor</title>>
+        {% endblock %}
+    </head>
+
+    <body>
+        {#
+            Import required macros. Learn more about Bootstrap-Flask's
+            Macros at:
+            https://bootstrap-flask.readthedocs.io/en/stable/macros.html
+        #}
+        {% from 'bootstrap/nav.html' import render_nav_item %}
+        {% from 'macros.html' import render_dropdown_item %}
+
+        <nav class="navbar navbar-expand-md navbar-dark sticky-top bg-primary">
+            <div class="container-fluid">
+                <!-- Navbar Brand -->
+                {# Redirect to dashboard if logged in, otherwise to index #}
+                <a class="navbar-brand"
+                href="{{ url_for('main_blueprint.index') }}"">
+                    HealthMonitor
+                </a>
+
+                <!-- Navbar toggle button (when collapsed) -->
+                <button class="navbar-toggler" type="button"
+                data-toggle="collapse" data-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false"
+                aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Actual Navbar Contents -->
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <!-- LEFT navbar contents -->
+                    <ul class="navbar-nav me-auto">
+                        {% if current_user.is_authenticated %}
+                            {#
+                                Place all tabs that should show up when
+                                user is logged in here.
+                            #}
+
+                            <!-- Dashboard -->
+                            {{ render_nav_item('user_blueprint.dashboard',
+                                            'Dashboard', use_li=True)}}
+
+                            <!-- Activities -->
+                            {{ render_nav_item('user_blueprint.show_activities',
+                                            'Strava Activities', use_li=True)}}
+                            
+                        
+                        {% elif not current_user.is_authenticated %}
+                            {#
+                                Place all tabs that should show up when
+                                user is NOT logged in here.
+                            #}
+
+                            <!-- About -->
+                            {{ render_nav_item('main_blueprint.about',
+                                            'About', use_li=True)}}
+
+                            <!-- Help -->
+                            {{ render_nav_item('main_blueprint.help',
+                                            'Help', use_li=True)}}
+                        {% endif %}
+                    </ul>
+
+                    <!-- RIGHT navbar contents -->
+                    <ul class="navbar-nav ml-auto">
+                        {% if current_user.is_authenticated %}
+                            {#
+                                Place all tabs that should show up when
+                                user is logged in here.
+                            #}
+                            
+                            <!-- Dropdown -->
+                            <li class="nav-item dropdown">
+                                <!-- Label -->
+                                <a class="nav-link dropdown-toggle" href="#"
+                                id="dropdownright" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                    {{ current_user.name }}
+                                </a>
+
+                                <!-- Actual dropdown contents -->
+                                <div class="dropdown-menu"
+                                aria-labelledby="dropdownright">
+
+                                    <!-- About -->
+                                    {{ render_dropdown_item(
+                                        'main_blueprint.about',
+                                        'About')}}
+
+                                    <!-- Help -->
+                                    {{ render_dropdown_item(
+                                        'main_blueprint.help',
+                                        'Help')}}
+
+                                    <div class="dropdown-divider"></div>
+                                    
+                                    <!-- Settings -->
+                                    {{ render_dropdown_item(
+                                        'user_blueprint.settings',
+                                        'Settings')}}
+                                    
+                                    <!-- Logout -->
+                                    {{ render_dropdown_item(
+                                        'auth_blueprint.logout',
+                                        'Logout')}}
+                                </div>
+                            </li>
+
+                        {% elif not current_user.is_authenticated %}
+                            {#
+                                Place all tabs that should show up when
+                                user is NOT logged in here.
+                            #}
+
+                            <!-- Login -->
+                            {{ render_nav_item('auth_blueprint.login',
+                                            'Login', use_li=True) }}
+                            <!-- Signup -->
+                            {{ render_nav_item('auth_blueprint.signup',
+                                            'Signup', use_li=True) }}
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+       
+        {% from "bootstrap/utils.html" import render_messages %}
+
+        <div style="padding: 5%">
+
+            {% block flash %}
+                <!-- Flash messages at the top -->
+                {{ render_messages() }}
+            {% endblock %}
+            
+            <!-- Page content -->
+            {% block content %}
+                {# 
+                    Inside the ``content`` is where you should place most of
+                    your own stuff. This will keep scripts at the page end
+                    and a navbar you add on later intact.
+                #}
+            {% endblock %}
+        </div>
+
+        <!-- JavaScripts -->
+        {{ bootstrap.load_js() }}
+        <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.js"></script>
+        {% block scripts %}
+            {#
+                Inside ``scripts`` is where you should place any scripts
+                that may be required on certain pages.
+            #}
+        {% endblock %}
+    </body>
+</html>
+

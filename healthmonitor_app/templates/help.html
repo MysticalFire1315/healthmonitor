@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+
+{# Use ``screen_title`` function from 'macros.html' generate screen title #}
+{% from "macros.html" import screen_title %}
+{% block title %}
+    <!-- Set screen title appropriate to page-->
+    {{ screen_title('Help') }}
+{% endblock %}
+
+
+
+{% block content %}
+    <h1>Help</h1>
+
+    <h2>What is HealthMonitor</h2>
+    <p>
+        HealthMonitor is an application designed to assist you in staying
+        healthy. By connecting to Strava to get physical activity data,
+        HealthMonitor can calculate if you met the government’s recommended
+        weekly activity goals and identify a schedule personalised just for
+        you based on your previous activities.
+    </p>
+    
+    <br>
+
+    <h2>Getting Started / Tutorial</h2>
+    <p>
+        If you are new to this app, register an account by clicking on the
+        Signup button in the top right corner of the screen to
+        utilise and view the full functionality of this app. Fill up the form
+        appropriately before clicking submit to create an account. For help on
+        creating an account, refer to Help => Signup.
+        <br><br>
+        After logging in, you should be directed to the Dashboard. The
+        Dashboard is where you can view your recorded stats after authorizing
+        Strava. If this is your first time logging in, click on your username
+        in the top right hand corner to reveal a dropdown menu. Within this
+        menu, you can find the About tab which brings you to a page detailing
+        the background of this app, a Help tab for help regarding the usage of
+        this app, a settings button to view the information currently stored
+        in your account, and a logout button to log out of your account. 
+        <br><br>
+        Click on the settings button to access the Settings page. To the right
+        of the words ‘Strava Authorisation (Help)’, you will notice that it
+        says “Authorise Now”. This means that this app is not yet authorised
+        to connect to Strava, and thus the app’s available functionality for
+        you to use is extremely limited. Click on the “Authorise Now” hyperlink
+        to be redirected to Strava’s authorisation page. Log in or sign up to
+        Strava and grant access to this app to continue. Refer to Help => Strava
+        Authorisation for more information regarding the app’s access to your
+        Strava account.
+        <br><br>
+        In the Dashboard, you should now find that your total hours of activity
+        in the last 7 days is displayed, along with whether your weekly goal is
+        met and your typical schedule (if any). This weekly goal is set
+        depending on the age group that you entered in the registration
+        process and can be viewed from the Settings page but cannot be changed.
+        Learn more about the weekly goal at Help => Weekly Goal. The typical
+        schedule will not necessarily show up, as that depends on the pattern
+        of your activities. If there are any patterns, they will be identified
+        and will show up in your Dashboard.
+        <br><br>
+        Finally, you may have noticed that there is a tab named Strava
+        Activities in the top left. Clicking on this will bring you to a
+        page where you can view all the activities you have logged to Strava
+        within the past 90 days4 (see Fig 4). The activities in the table will
+        refresh after an hour if you leave the page, or you can manually
+        refresh it by clicking on the words “Refresh now” under the table.
+        <br><br>
+        Click on the app name in the top left to return to the Dashboard.
+        This is where the tutorial ends. Enjoy using the app!
+    </p>
+
+    <br>
+    
+    <h2>Signup</h2>
+    <p>
+        There are 6 fields to fill out in the account registration form: 
+        <ul>
+            <li>
+                The 1st field is the email field, in which you should
+                enter your email address. This is what will be used to
+                identify you in the database and there cannot be two
+                accounts with the same email, so ensure that your email
+                address is unique.
+            </li>
+            <li>
+                The 2nd field is where you should enter your desired
+                username. This username can be anything you like, so
+                get creative!
+            </li>
+            <li>
+                The 3rd field is for your password. Make sure you
+                remember your password, as there is no way to recover it!
+            </li>
+            <li>
+                You must type your password into the 4th field again.
+                Ensure that it is the same as what you entered in the 3rd
+                field.
+            </li>
+            <li>
+                Select your age group. Please be truthful, as the
+                recommended weekly hours are based on the age group
+                you select and there is no way to change this later.
+            </li>
+            <li>
+                Click on the check box, and follow the prompts if
+                necessary. This is just to ensure that you’re not a
+                robot. Beep!
+            </li>
+        </ul>
+    </p>
+
+    <br>
+
+    <h2>Login</h2>
+    <p>
+        There are 2 fields to fill out in the login form: 
+        <ul>
+            <li>
+                Enter your email address in the 1st field.
+            </li>
+            <li>
+                Enter the password you registered with in the 2nd field.
+            </li>
+        </ul>
+    </p>
+
+    <br>
+
+    <h2>Strava Authorisation</h2>
+    <p>
+        Access to Strava is an integral part of this application. Without
+        access to Strava, most features of this application cannot be accessed.
+        <br><br>
+        To authorise access to Strava, head over to the settings page and
+        click the “Authorise Now” button.
+        <br><br>
+        When prompted, log in to Strava and click “Authorize” when prompted.
+    </p>
+    
+    <br>
+
+    <h2>Weekly Goal</h2>
+    <p>
+        The weekly physical activity goals are taken directly from the
+        Australian government’s department of health website. It is said that
+        for children between 5 and 17 years, the recommended number of hours
+        of exercise per week is 3; whereas it’s 5 for adults between 18 to 64
+        years and 3.5 for seniors older than 64 years old.
+    </p>
+
+    <br>
+
+    <h2>Additional Queries</h2>
+    <p>
+        As the software is still in it’s pre-official release state, please
+        contact the developer Joel Chong directly if you have any other queries,
+        bugs to report or suggestions to make.
+    
+    </p>
+{% endblock %}

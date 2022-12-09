@@ -1,0 +1,24 @@
+{% macro screen_title(screen_name) %}
+    <title>{{ screen_name }} - SDD Major Project App</title>
+{% endmacro %}
+
+
+{% macro render_dropdown_item(endpoint, text, badge='') %}
+    {# Essentially the same as ``bootstrap/nav.html -> render_nav_item``, except this is for dropdown #}
+    <a class="dropdown-item {% if request.endpoint and request.endpoint == endpoint %}active{% endif %}"
+       href="{{ url_for(endpoint, **kwargs) }}">
+        {{ text }} {% if badge %}<span class="badge badge-light">{{ badge }}</span>{% endif %}
+    </a>
+{% endmacro %}
+
+
+{% macro render_time(seconds, include_seconds=true) %}
+    {# Render a period of time (in seconds) for display #}
+    {% if (seconds//3600) >0 %}{{ (seconds//3600)|int }}:{% if 10> ((seconds%3600)//60) %}0{% endif %}{% endif %}{{ ((seconds%3600)//60)|int }}{% if include_seconds is true %}:{% if 10> ((seconds%3600)%60) %}0{% endif %}{{ ((seconds%3600)%60)|int }}{% endif %}
+{% endmacro %}
+
+
+{% macro render_timestamp(seconds) %}
+    {# Render a timestamp (in seconds) for display #}
+    {% if (seconds//3600) >0 %}{% if (seconds//3600) >12 %}{{ ((seconds//3600)-12)|int }}{% elif (seconds//3600) in [0, 12] %}12{% else %}{{ (seconds//3600)|int }}{% endif %}:{% if 10> ((seconds%3600)//60) %}0{% endif %}{% endif %}{{ ((seconds%3600)//60)|int }} {% if (seconds//3600) > 11%}PM{% else %}AM{% endif %}
+{% endmacro %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{# Use ``screen_title`` function from 'macros.html' generate screen title #}
+{% from "macros.html" import screen_title %}
+{% block title %}
+    <!-- Set screen title appropriate to page-->
+    {{ screen_title('Signup') }}
+{% endblock %}
+
+
+
+{# Import any additional macros here #}
+{% from "bootstrap/form.html" import render_form %}
+
+{% block content %}
+    <h1>Register</h1>
+
+    <form method="POST" action="{{ url_for('auth_blueprint.signup') }}">
+        <!-- Registration form -->
+        {{ form.csrf_token }}
+
+        <!-- Render form -->
+        {{ render_form(form) }}
+    </form>
+
+    <p>
+        <!-- Link to login page -->
+        Already have an account? 
+        <a href="{{ url_for('auth_blueprint.login') }}">Login here</a>.
+    </p>
+{% endblock %}

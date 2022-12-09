@@ -1,0 +1,19 @@
+# This file contains all required configurations for Flask to run.
+
+# reCAPTCHA keys
+RECAPTCHA_PUBLIC_KEY = "6LeFXMIbAAAAALfdc5icKlYD7nIQY4gBGiAKnaRQ"
+RECAPTCHA_PRIVATE_KEY = "6LeFXMIbAAAAAJPdvc_JtXoWF1Erh8OptlQXbSEK"
+
+# Secret key - Used to work with sessions in Flask.
+# This should generally be a string of random characters.
+SECRET_KEY = "devkey"
+
+# Bootswatch Themes - Sets the theme for Bootstrap. More info at:
+# https://bootstrap-flask.readthedocs.io/en/stable/advanced.html#bootswatch-themes
+BOOTSTRAP_BOOTSWATCH_THEME = "cerulean"
+
+# SQLAlchemy configuration
+SQLALCHEMY_DATABASE_URI = "sqlite:///db.sqlite"
+
+# https://stackoverflow.com/questions/61573598/sqlalchemy-track-modifications-adds-significant-overhead-and-will-be-disabled-by
+SQLALCHEMY_TRACK_MODIFICATIONS = False

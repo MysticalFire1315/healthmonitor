@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{# Use ``screen_title`` function from 'macros.html' generate screen title #}
+{% from "macros.html" import screen_title %}
+{% block title %}
+    <!-- Set screen title appropriate to page-->
+    {{ screen_title('About') }}
+{% endblock %}
+
+
+
+{% block content %}
+    <h1>About</h1>
+
+    <p>This program was designed as part of the Software Design and Development
+        major assessment task for the 2021 HSC by Joel Chong.
+        <br><br>
+        More details available at:
+        <a href="https://docs.google.com/document/d/1jn7fMNkgHCffDR02182z8VRJYdQ3nluqbhsDDp2WDFI/edit?usp=sharing">
+        Official Documentation</a>
+    </p>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{# Use ``screen_title`` function from 'macros.html' generate screen title #}
+{% from "macros.html" import screen_title %}
+{% block title %}
+    <!-- Set screen title appropriate to page-->
+    {{ screen_title('Dashboard') }}
+{% endblock %}
+
+{% from "macros.html" import render_timestamp %}
+{% block content %}
+    <h1>Welcome, {{ current_user.name }}!</h1>
+
+    {% if authorized: %}
+        <br>
+        <h2>
+            Total hours of activity in the last 7 days:
+            {{ weekly_hours }} hours ({{ recommended_hours/3600 }} hours
+            weekly goal 
+            {% if recommended_hours > weekly_hours*3600 %}not{% endif %} met!)
+        </h2>
+
+        <br><br>
+
+        <h2>
+            Your usual schedule repeats every {{ period }} days
+        </h2>
+        {% for day in weekdays %}
+            <h3>
+                Day in schedule: {{ day[0] }}<br>
+                Start time: {{ render_timestamp(day[1]*3600) }}
+            </h3>
+        {% endfor %}
+
+        <p>
+            Check out your activities at 
+            <a href="{{ url_for('user_blueprint.show_activities') }}">
+                Strava Activities</a>
+        </p>
+    {% else %}
+        <p>
+            Features of this application can only be accessed after Strava
+            has been authorized. Head over to 
+            <a href="{{ url_for('main_blueprint.help') }}">Help</a> 
+            for more information.
+        </p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{# Use ``screen_title`` function from 'macros.html' generate screen title #}
+{% from "macros.html" import screen_title %}
+{% block title %}
+    <!-- Set screen title appropriate to page-->
+    {{ screen_title('Strava Activities') }}
+{% endblock %}
+
+
+{% from "macros.html" import render_time %}
+{% block content %}
+    <h1>Strava Activities</h1>
+    <div class="table-responsive">
+        <table id="data" class="table table-hover">
+            <caption>
+                Last refreshed at {{ refresh_time }}.
+            <a href="{{ url_for('strava_blueprint.refresh_activities') }}">
+                Refresh now
+            </a>
+            </caption>
+            <thead>
+                <!-- Table Header -->
+                <tr>
+                    <th>Sport</th>
+                    <th>Date (Local)</th>
+                    <th>Activity Name</th>
+                    <th>Moving Time</th>
+                    <th>Elapsed Time</th>
+                    <th>Distance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Table Body -->
+                {% for activity in activities %}
+                    <tr>
+                        <td>{{ activity.type }}</td>
+                        <td>{{ activity.start_date_local }}</td>
+                        <td>{{ activity.name }}</td>
+                        <td>{{ render_time(activity.moving_time) }}</td>
+                        <td>{{ render_time(activity.elapsed_time) }}</td>
+                        <td>{{ activity.distance }} km</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% block scripts %}
+        <script>
+            $(document).ready(function () {
+                $('#data').DataTable();
+            })
+        </script>
+    {% endblock %}
+{% endblock %}

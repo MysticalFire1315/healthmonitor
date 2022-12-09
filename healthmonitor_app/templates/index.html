@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{# Use ``screen_title`` function from 'macros.html' generate screen title #}
+{% from "macros.html" import screen_title %}
+{% block title %}
+    <!-- Set screen title appropriate to page-->
+    {{ screen_title('Index') }}
+{% endblock %}
+
+
+{% block content %}
+    <h1>Welcome to HealthMonitor</h1>
+    <p>Head over to <a href="{{ url_for('main_blueprint.help') }}">Help
+    </a>to get started.</p>
+{% endblock %}

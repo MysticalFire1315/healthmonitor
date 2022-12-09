@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{# Use ``screen_title`` function from 'macros.html' generate screen title #}
+{% from "macros.html" import screen_title %}
+{% block title %}
+    <!-- Set screen title appropriate to page-->
+    {{ screen_title('Strava Profile') }}
+{% endblock %}
+
+
+{% block content %}
+    <h1>Strava Profile</h1>
+
+    <p>Firstname: {{ firstname }}</p>
+    <p>Lastname: {{ lastname }}</p>
+    <p>Weight: {{ weight }}</p>
+{% endblock %}

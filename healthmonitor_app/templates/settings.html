@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{# Use ``screen_title`` function from 'macros.html' generate screen title #}
+{% from "macros.html" import screen_title %}
+{% block title %}
+    <!-- Set screen title appropriate to page-->
+    {{ screen_title('Settings') }}
+{% endblock %}
+
+{% from 'bootstrap/table.html' import render_table %}
+{% block content %}
+    <h1>Settings</h1>
+
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <!-- No head, just straight into body-->
+            <tbody>
+                <tr>
+                    <th scope="row">Username</th>
+                    <td>{{ table_data['Username'] }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Email</th>
+                    <td>{{ table_data['Email'] }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Recommended Weekly Hours (<a
+                        href="{{ url_for('main_blueprint.help') }}">Help</a>)
+                    </th>
+                    <td>{{ table_data['Recommended Hours'] }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Strava Authorisation (<a 
+                        href="{{ url_for('main_blueprint.help') }}">Help</a>)
+                    </th>
+                    <td>{% if not table_data['Strava Authorized']: %}
+                            <a href=
+                            "{{ url_for('strava_blueprint.authorize_url') }}">
+                                Authorise Now
+                            </a>
+                        {% else %}
+                            <a href=
+                            "{{ url_for('strava_blueprint.deauthorize_url') }}">
+                                Deauthorise
+                            </a>
+                        {% endif %}
+                    </td>
+                </tr>
+        </table>
+{% endblock %}
