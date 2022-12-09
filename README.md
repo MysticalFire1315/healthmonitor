@@ -1,4 +1,5 @@
-# _______ Details
-This README file documents the main usage methods and stuff within this program
+# SDD Major Project 2021 (HealthMonitor)
 
-*See [here](https://docs.google.com/document/d/1jn7fMNkgHCffDR02182z8VRJYdQ3nluqbhsDDp2WDFI/edit?usp=sharing) for further information*
+This is an archive of my major project for the HSC Software Design and Development 2020-2021 course.
+
+Documentation, including installation and user guides, exists [here](https://docs.google.com/document/d/1jn7fMNkgHCffDR02182z8VRJYdQ3nluqbhsDDp2WDFI/edit?usp=sharing).
